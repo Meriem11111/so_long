@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 20:40:59 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/04/05 23:04:58 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/09 12:09:40 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,4 @@ void	ft_err(void)
 {
 	write(2, "Error\nnumbers of args\n", 23);
 	exit(0);
-}
-
-void	print_mvmnt(t_map *data_img)
-{
-	char	move_str[50];
-
-	sprintf(move_str, "MOVE : %d", data_img->counter);
-	mlx_string_put(data_img->mlx, data_img->win, 15, 6, 0xFFFFFF, move_str);
 }

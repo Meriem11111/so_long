@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 23:18:12 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/04/06 01:52:13 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/11 19:09:41 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	print_img(t_map **data)
 	(*data)->counter = 0;
 	(*data)->img[0] = mlx_xpm_file_to_image((*data)->mlx, "./textures/1.xpm",
 			&(*data)->win_width, &(*data)->win_height);
-	(*data)->img[1] = mlx_xpm_file_to_image((*data)->mlx,
-			"./textures/c2.xpm", &(*data)->win_width, &(*data)->win_height);
+	(*data)->img[1] = mlx_xpm_file_to_image((*data)->mlx, "./textures/c2.xpm",
+			&(*data)->win_width, &(*data)->win_height);
 	(*data)->img[2] = mlx_xpm_file_to_image((*data)->mlx, "./textures/Door.xpm",
 			&(*data)->win_width, &(*data)->win_height);
 	(*data)->img[3] = mlx_xpm_file_to_image((*data)->mlx,
@@ -36,7 +36,12 @@ void	print_img(t_map **data)
 			&(*data)->win_height);
 	if (!(*data)->img[0] || !(*data)->img[1] || !(*data)->img[2]
 		|| !(*data)->img[3] || !(*data)->img[4] || !(*data)->img[5])
-		invalid_img();
+	{
+		write(2, "Error\ninvalid image\n", 20);
+		free_memory(data);
+		free(*data);
+		exit(0);
+	}
 }
 
 int	print_window(t_map *data)

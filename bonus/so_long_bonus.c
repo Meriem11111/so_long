@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 20:43:07 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/04/06 01:06:34 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/12 10:38:47 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,16 @@
 int	key_hook(int keycode, t_map **map)
 {
 	pos_player(*map);
-	pos_enemy(*map);
-	if (keycode == 2 || keycode == 124)
+	if (keycode == 2)
 		to_right(map);
-	else if (keycode == 0 || keycode == 123)
+	else if (keycode == 0)
 		to_left(map);
-	else if (keycode == 13 || keycode == 126)
+	else if (keycode == 13)
 		to_up(map);
-	else if (keycode == 1 || keycode == 125)
+	else if (keycode == 1)
 		to_down(map);
 	else if (keycode == 53)
-		close_win(map);
+		delete_window(map);
 	mlx_clear_window((*map)->mlx, (*map)->win);
 	print_window(*map);
 	return (0);
@@ -40,7 +39,7 @@ void	check_file(char *file)
 	i = ft_strlen(file);
 	str = ".ber";
 	j = ft_strlen(str);
-	if (i < j)
+	if (i <= j)
 		err_file();
 	while (j >= 0)
 	{
@@ -51,6 +50,15 @@ void	check_file(char *file)
 	}
 	if (i >= 0 && file[i] == '/')
 		err_file();
+}
+
+void	mlx_win(t_map *data)
+{
+	print_img(&data);
+	mlx_loop_hook(data->mlx, print_window, data);
+	mlx_hook(data->win, 2, 0L, key_hook, &data);
+	mlx_hook(data->win, 17, 0, (void *)delete_window, &data);
+	mlx_loop(data->mlx);
 }
 
 int	main(int ac, char **av)
@@ -72,11 +80,12 @@ int	main(int ac, char **av)
 	read_map(av[1], &data);
 	data->counter = 0;
 	data->mlx = mlx_init();
+	if (data->mlx == NULL)
+	{
+		free(data);
+		return (1);
+	}
 	data->win = mlx_new_window(data->mlx, data->len * 50, data->countlines * 50,
 			"SO_LONG_BONUS");
-	print_img(&data);
-	mlx_loop_hook(data->mlx, print_window, data);
-	mlx_hook(data->win, 2, 0L, key_hook, &data);
-	mlx_hook(data->win, 17, 0, (void *)delete_window, &data);
-	mlx_loop(data->mlx);
+	mlx_win(data);
 }

@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 23:11:07 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/04/05 22:57:10 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/12 10:16:05 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,27 +17,26 @@ void	ft_error(t_map *data)
 	if (data->e == 0)
 	{
 		write(2, "Error\nExit is missing\n", 23);
-		exit(1);
+		free2(data);
 	}
+	else if (data->e > 1)
+		exit_err(data);
 	else if (data->c < 1)
 	{
 		write(2, "Error\ncollectible is missing\n", 30);
-		exit(1);
+		free2(data);
 	}
 	else if (data->p == 0)
 	{
 		write(2, "Error\nPlayer is missing\n", 25);
-		exit(1);
+		free2(data);
 	}
 	else if (data->n == 0)
-	{
-		write(2, "Error\nEnemy is missing\n", 24);
-		exit(1);
-	}
+		ennemy_error(data);
 	else if (data->p > 1)
 	{
 		write(2, "Error\nthere's more than ONE player\n", 28);
-		exit(1);
+		free2(data);
 	}
 }
 
@@ -78,6 +77,17 @@ int	check_valid_map(t_map *data)
 	return (1);
 }
 
+void	check_size(t_map *data)
+{
+	if (data->len > 52 || data->countlines > 27)
+	{
+		write(2, "Error\nInvalid size window\n", 27);
+		free_memory(&data);
+		free(data);
+		exit(1);
+	}
+}
+
 void	check_error(t_map *data)
 {
 	check_len(data);
@@ -85,12 +95,14 @@ void	check_error(t_map *data)
 	check_first_last(data, data->countlines - 1);
 	check_left_right(data);
 	check_characters(data);
+	check_size(data);
 	pos_player(data);
 	flood_fill(&data, data->x_p, data->y_p);
 	if (check_valid_map(data) == 0)
 	{
 		free_memory(&data);
 		write(2, "Error\nInvalid Map\n", 19);
+		free(data);
 		exit(0);
 	}
 }

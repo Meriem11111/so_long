@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 03:39:08 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/04/06 01:46:23 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/12 10:37:22 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,9 @@ void		to_left(t_map **data);
 void		to_down(t_map **data);
 void		to_up(t_map **data);
 void		delete_window(t_map **map);
-void		close_win(t_map **map);
 void		print_img(t_map **data);
 void		read_map(char *av, t_map **data);
+void		check_size(t_map *data);
 int			check_valid_map(t_map *data);
 void		flood_fill(t_map **data, int x, int y);
 void		free_memory(t_map **data);
@@ -71,5 +71,7 @@ void		ft_initialize(t_map *data);
 void		counter_print_move(t_map *map);
 void		ft_err(void);
 void		print_image_for_e(t_map *data, int y, int x);
+void		free2(t_map *data);
+void		mlx_win(t_map *data);
 
 #endif

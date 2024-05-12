@@ -6,15 +6,17 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 23:18:12 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/04/21 16:09:05 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/12 10:25:05 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-void	invalid_img(void)
+void	invalid_img(t_map **data)
 {
 	write(2, "Error\ninvalid image\n", 20);
+	free_memory(data);
+	free(data);
 	exit(0);
 }
 
@@ -44,7 +46,7 @@ void	print_img(t_map **data)
 		|| !(*data)->img[3] || !(*data)->img[4] || !(*data)->img[5]
 		|| !(*data)->img[6] || !(*data)->img[7] || !(*data)->img[8]
 		|| !(*data)->img[9])
-		invalid_img();
+		invalid_img(data);
 }
 
 void	animation_exit(t_map *data)

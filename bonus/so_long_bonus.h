@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 03:38:41 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/04/06 01:19:57 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/12 10:39:05 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ typedef struct s_map
 	int		y_p;
 	int		x_n;
 	int		y_n;
+	int		state;
 	void	*mlx;
 	void	*win;
 	int		win_height;
@@ -60,20 +61,24 @@ void		to_left(t_map **data);
 void		to_down(t_map **data);
 void		to_up(t_map **data);
 void		delete_window(t_map **map);
-void		close_win(t_map **map);
+void		check_size(t_map *data);
 void		print_img(t_map **data);
 void		read_map(char *av, t_map **data);
-void		flood_fill(t_map **map, int x, int y);
 int			check_valid_map(t_map *data);
 void		flood_fill(t_map **data, int x, int y);
 void		check_line(char *argv);
-void		invalid_img(void);
+void		exit_err(t_map *data);
+void		invalid_img(t_map **data);
 void		print_map_line(t_map *data, int a, int x);
-void		pos_enemy(t_map *data);
 void		print_mvmnt(t_map *data_img);
 void		ft_initialize(t_map *data);
 void		ft_err(void);
 void		free_memory(t_map **data);
 void		err_file(void);
+void		ennemy_error(t_map *data);
+char		*ft_strjoin2(char *s1, char *s2);
+int			ft_strlen(char *str);
+void		free2(t_map *data);
+void		mlx_win(t_map *data);
 
 #endif

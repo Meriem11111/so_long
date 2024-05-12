@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 17:18:15 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/04/05 22:46:45 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/12 10:33:04 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@ void	delete_window(t_map **map)
 {
 	free_memory(map);
 	mlx_destroy_window((*map)->mlx, (*map)->win);
+	free(*map);
 	exit(0);
 }
 
-void	close_win(t_map **map)
+void	free2(t_map *data)
 {
-	free_memory(map);
-	mlx_destroy_window((*map)->mlx, (*map)->win);
-	exit(0);
+	free_memory(&data);
+	free(data);
+	exit(1);
 }

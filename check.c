@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 23:11:07 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/04/24 09:05:10 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/12 10:08:16 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,22 +17,27 @@ void	ft_error(t_map *data)
 	if (data->e == 0)
 	{
 		write(2, "Error\nExit is missing\n", 23);
-		exit(1);
+		free2(data);
+	}
+	else if (data->e > 1)
+	{
+		write(2, "Error\nMore than ONE exit\n", 26);
+		free2(data);
 	}
 	else if (data->c < 1)
 	{
 		write(2, "Error\ncollectible is missing\n", 30);
-		exit(1);
+		free2(data);
 	}
 	else if (data->p == 0)
 	{
 		write(2, "Error\nPlayer is missing\n", 25);
-		exit(1);
+		free2(data);
 	}
 	else if (data->p > 1)
 	{
 		write(2, "Error\nMore than ONE player\n", 28);
-		exit(1);
+		free2(data);
 	}
 }
 
@@ -73,6 +78,17 @@ int	check_valid_map(t_map *data)
 	return (1);
 }
 
+void	check_size(t_map *data)
+{
+	if (data->len > 52 || data->countlines > 27)
+	{
+		write(2, "Error\nInvalid size window\n", 27);
+		free_memory(&data);
+		free(data);
+		exit(1);
+	}
+}
+
 void	check_error(t_map *data)
 {
 	check_len(data);
@@ -80,42 +96,14 @@ void	check_error(t_map *data)
 	check_first_last(data, data->countlines - 1);
 	check_left_right(data);
 	check_characters(data);
+	check_size(data);
 	pos_player(data);
-	 printf("Before flood fill:\n");
-    int i = 0;
-    while (i < data->countlines)
-    {
-        int j = 0;
-        while (j < data->len)
-        {
-            printf("%c", data->str[i][j]);
-            j++;
-        }
-        printf("\n");
-        i++;
-    }
-    
-    flood_fill(&data, data->x_p, data->y_p);
-    
-    // Print data after flood fill
-    printf("After flood fill:\n");
-    i = 0;
-    while (i < data->countlines)
-    {
-        int j = 0;
-        while (j < data->len)
-        {
-            printf("%c", data->str[i][j]);
-            j++;
-        }
-        printf("\n");
-        i++;
-    }
-
+	flood_fill(&data, data->x_p, data->y_p);
 	if (check_valid_map(data) == 0)
 	{
 		free_memory(&data);
 		write(2, "Error\nInvalid Map\n", 19);
+		free(data);
 		exit(0);
 	}
 }

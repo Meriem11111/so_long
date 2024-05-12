@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 17:18:15 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/04/06 01:30:38 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/12 10:36:09 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,19 @@ void	delete_window(t_map **map)
 {
 	free_memory(map);
 	mlx_destroy_window((*map)->mlx, (*map)->win);
+	free(*map);
 	exit(0);
 }
 
-void	close_win(t_map **map)
+void	exit_err(t_map *data)
 {
-	free_memory(map);
-	mlx_destroy_window((*map)->mlx, (*map)->win);
-	exit(0);
+	write(2, "Error\nthere's more than ONE exit\n", 34);
+	free2(data);
+}
+
+void	free2(t_map *data)
+{
+	free_memory(&data);
+	free(data);
+	exit(1);
 }

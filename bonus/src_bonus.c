@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:04:34 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/04/06 01:57:16 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/11 21:35:57 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,10 @@ void	allocate_memory(t_map **data)
 {
 	(*data)->str = malloc(sizeof(char *) * ((*data)->countlines + 1));
 	if (!(*data)->str)
-		return ;
+	{
+		free(*data);
+		exit(1);
+	}
 }
 
 int	count_lines(int *fd, char *name)
@@ -53,6 +56,7 @@ void	read_lines(int fd, t_map **data)
 			return ;
 		}
 		(*data)->str[i] = line;
+		(*data)->state = 0;
 		line = get_next_line(fd);
 		i++;
 	}
@@ -73,6 +77,7 @@ void	read_map(char *av, t_map **data)
 	if ((*data)->countlines == 0)
 	{
 		write(2, "Error\nMap is empty !\n", 22);
+		free(*data);
 		close(fd);
 		exit(0);
 	}

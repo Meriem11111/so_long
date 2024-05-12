@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:34:04 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/04/06 00:05:47 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/12 10:20:42 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	check_characters(t_map *data)
 				&& data->str[data->x][data->y] != '0')
 			{
 				write(2, "Error\n unknown character\n", 25);
-				exit(1);
+				free2(data);
 			}
 			data->y--;
 		}
@@ -54,12 +54,16 @@ void	check_len(t_map *data)
 			if (data->len != ft_strlen(data->str[i]) - 1)
 			{
 				write(2, "Error\nLength\n", 14);
+				free_memory(&data);
+				free(data);
 				exit(0);
 			}
 		}
 		else if (data->len != ft_strlen(data->str[i]))
 		{
 			write(2, "Error\nLength\n", 14);
+			free_memory(&data);
+			free(data);
 			exit(0);
 		}
 		i++;
@@ -76,6 +80,8 @@ void	check_first_last(t_map *data, int j)
 		if (data->str[j][i] != '1')
 		{
 			write(2, "Error\nERR FIRST row\n", 21);
+			free_memory(&data);
+			free(data);
 			exit(0);
 		}
 		i++;
@@ -92,6 +98,8 @@ void	check_left_right(t_map *data)
 		if (data->str[i][0] != '1' || data->str[i][data->len - 1] != '1')
 		{
 			write(2, "Error\nERR left/right col\n", 25);
+			free_memory(&data);
+			free(data);
 			exit(0);
 		}
 		i++;

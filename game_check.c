@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 20:40:59 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/04/05 23:39:57 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/11 21:34:45 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	ft_strchar(char *s, int c)
 void	ft_initialize(t_map *data)
 {
 	data->x = 0;
+	data->y = 0;
 	data->e = 0;
 	data->c = 0;
 	data->p = 0;
@@ -48,6 +49,6 @@ void	err_file(void)
 
 void	ft_err(void)
 {
-	write(2, "Error\nnumbers of args\n", 23);
+	write(2, "Error\nnumber of args\n", 22);
 	exit(0);
 }
