@@ -6,17 +6,11 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 23:18:12 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/05/11 19:09:41 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/13 21:59:00 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	invalid_img(void)
-{
-	write(2, "Error\ninvalid image\n", 20);
-	exit(0);
-}
 
 void	print_img(t_map **data)
 {
@@ -39,8 +33,9 @@ void	print_img(t_map **data)
 	{
 		write(2, "Error\ninvalid image\n", 20);
 		free_memory(data);
-		free(*data);
-		exit(0);
+		mlx_destroy_window((*data)->mlx,(*data)->win);
+		system("leaks so_long");
+		exit(1);
 	}
 }
 

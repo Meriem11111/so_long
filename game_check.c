@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 20:40:59 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/05/11 21:34:45 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/13 21:41:41 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,13 @@ void	counter_print_move(t_map *map)
 void	err_file(void)
 {
 	ft_printf("Error\nInvalid file\n");
+	system("leaks so_long");
 	exit(1);
 }
 
 void	ft_err(void)
 {
 	write(2, "Error\nnumber of args\n", 22);
+	system("leaks so_long");
 	exit(0);
 }

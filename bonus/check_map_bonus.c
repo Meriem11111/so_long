@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 15:34:04 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/05/12 10:20:42 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/13 21:31:21 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	check_len(t_map *data)
 				write(2, "Error\nLength\n", 14);
 				free_memory(&data);
 				free(data);
+				system("leaks so_long");
 				exit(0);
 			}
 		}
@@ -64,6 +65,7 @@ void	check_len(t_map *data)
 			write(2, "Error\nLength\n", 14);
 			free_memory(&data);
 			free(data);
+			system("leaks so_long");
 			exit(0);
 		}
 		i++;
@@ -82,6 +84,7 @@ void	check_first_last(t_map *data, int j)
 			write(2, "Error\nERR FIRST row\n", 21);
 			free_memory(&data);
 			free(data);
+			system("leaks so_long");
 			exit(0);
 		}
 		i++;
@@ -100,6 +103,7 @@ void	check_left_right(t_map *data)
 			write(2, "Error\nERR left/right col\n", 25);
 			free_memory(&data);
 			free(data);
+			system("leaks so_long");
 			exit(0);
 		}
 		i++;
@@ -115,6 +119,7 @@ void	check_line(char *argv)
 	if (fd == -1)
 	{
 		write(2, "Error opening file\n", 19);
+		system("leaks so_long");
 		exit(1);
 	}
 	line = get_next_line(fd);
@@ -125,6 +130,7 @@ void	check_line(char *argv)
 			write(2, "Error\nEmpty line\n", 18);
 			free(line);
 			close(fd);
+			system("leaks so_long");
 			exit(1);
 		}
 		free(line);
