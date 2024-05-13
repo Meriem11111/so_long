@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 23:18:12 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/05/13 21:59:00 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/13 23:08:19 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,7 @@ void	print_img(t_map **data)
 	{
 		write(2, "Error\ninvalid image\n", 20);
 		free_memory(data);
-		mlx_destroy_window((*data)->mlx,(*data)->win);
-		system("leaks so_long");
+		mlx_destroy_window((*data)->mlx, (*data)->win);
 		exit(1);
 	}
 }

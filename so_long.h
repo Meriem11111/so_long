@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/05 03:39:08 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/05/12 10:37:22 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/13 23:11:30 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int			check_valid_map(t_map *data);
 void		flood_fill(t_map **data, int x, int y);
 void		free_memory(t_map **data);
 void		check_line(char *argv);
-void		invalid_img(void);
 void		print_map_line(t_map *data, int a, int x);
 void		ft_initialize(t_map *data);
 void		counter_print_move(t_map *map);

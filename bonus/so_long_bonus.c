@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/09 20:43:07 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/05/13 21:32:05 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/13 23:09:30 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int	main(int ac, char **av)
 
 	if (ac <= 1)
 		exit(0);
-		system("leaks so_long");
 	if (ac != 2)
 		ft_err();
 	check_file(av[1]);

@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 23:18:12 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/05/13 22:01:29 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/13 23:09:24 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	invalid_img(t_map **data)
 {
 	write(2, "Error\ninvalid image\n", 20);
 	free_memory(data);
-	system("leaks so_long");
+	mlx_destroy_window((*data)->mlx, (*data)->win);
 	exit(0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 12:04:34 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/05/13 21:32:17 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/13 23:09:44 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	allocate_memory(t_map **data)
 	if (!(*data)->str)
 	{
 		free(*data);
-		system("leaks so_long");
 		exit(1);
 	}
 }
@@ -72,7 +71,6 @@ void	read_map(char *av, t_map **data)
 	if (fd == -1)
 	{
 		write(2, "Error opening file\n", 19);
-		system("leaks so_long");
 		exit(0);
 	}
 	(*data)->countlines = count_lines(&fd, av);
@@ -81,7 +79,6 @@ void	read_map(char *av, t_map **data)
 		write(2, "Error\nMap is empty !\n", 22);
 		free(*data);
 		close(fd);
-		system("leaks so_long");
 		exit(0);
 	}
 	allocate_memory(data);

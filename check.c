@@ -6,7 +6,7 @@
 /*   By: meabdelk <meabdelk@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 23:11:07 by meabdelk          #+#    #+#             */
-/*   Updated: 2024/05/13 21:41:27 by meabdelk         ###   ########.fr       */
+/*   Updated: 2024/05/13 23:08:07 by meabdelk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	check_size(t_map *data)
 		write(2, "Error\nInvalid size window\n", 27);
 		free_memory(&data);
 		free(data);
-		system("leaks so_long");
 		exit(1);
 	}
 }
@@ -105,7 +104,6 @@ void	check_error(t_map *data)
 		free_memory(&data);
 		write(2, "Error\nInvalid Map\n", 19);
 		free(data);
-		system("leaks so_long");
 		exit(0);
 	}
 }
